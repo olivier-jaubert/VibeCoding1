@@ -3,13 +3,13 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
   padding: 2rem;
-  background: #f8f9fa;
+  background: transparent;
 }
 
 .gallery-item {
-  background: #fff;
+  background: #222;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
   overflow: hidden;
   transition: transform 0.2s;
 }
@@ -23,4 +23,152 @@
   height: 180px;
   object-fit: cover;
   display: block;
+}
+
+.gallery-main-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2.5rem;
+  padding: 2rem 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.artist-profile {
+  min-width: 260px;
+  max-width: 320px;
+  background: #181818;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #eee;
+}
+
+.artist-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.artist-description {
+  text-align: center;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+.gallery-section {
+  flex: 1;
+}
+
+.gallery-section h1 {
+  color: #fff;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.artist-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: #181818;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  padding: 2rem 2rem 1.5rem 2rem;
+  margin: 2rem auto 2.5rem auto;
+  max-width: 1100px;
+}
+
+.artist-photo-top {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.artist-description-top {
+  color: #eee;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #181818;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-content img {
+  max-width: 80vw;
+  max-height: 70vh;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.modal-close {
+  background: #222;
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.modal-close:hover {
+  opacity: 1;
+  background: #444;
+}
+
+@media (max-width: 700px) {
+  .artist-header {
+    flex-direction: column;
+    align-items: center;
+    padding: 1.2rem 0.5rem;
+    gap: 1rem;
+  }
+  .artist-description-top {
+    text-align: center;
+  }
 }
