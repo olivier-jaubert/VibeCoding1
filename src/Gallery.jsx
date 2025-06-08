@@ -4,13 +4,19 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import axios from "axios";
 
-// Automatically import all jpg images from assets folder
-const images = import.meta.glob('./assets/*.jpg', { eager: true });
+// Automatically import all jpg and png images from assets folder
+const images = {
+  ...import.meta.glob('./assets/*.jpg', { eager: true }),
+  ...import.meta.glob('./assets/*.png', { eager: true })
+};
 
 const imageList = Object.values(images).map((mod) => mod.default);
 
-// Automatically import all jpg images from enhanced_images folder
-const enhancedImagesStatic = import.meta.glob('./assets/enhanced_images/*.jpg', { eager: true });
+// Automatically import all jpg and png images from enhanced_images folder
+const enhancedImagesStatic = {
+  ...import.meta.glob('./assets/enhanced_images/*.jpg', { eager: true }),
+  ...import.meta.glob('./assets/enhanced_images/*.png', { eager: true })
+};
 const enhancedImageList = Object.values(enhancedImagesStatic).map((mod) => mod.default);
 
 const Gallery = () => {
@@ -136,7 +142,10 @@ const Gallery = () => {
         {/* Enhanced Images Section (persistent) */}
         {enhancedImageList.length > 0 && (
           <div className="gallery-container" style={{ marginTop: 32 }}>
-            <h2 style={{ gridColumn: '1/-1', textAlign: 'center', color: '#0a2342' }}>🪄 Enhanced Images</h2>
+            <h2 style={{ gridColumn: '1/-1', textAlign: 'center', color: '#0a2342' }}>🪄 Edited Images</h2>
+            <div style={{ gridColumn: '1/-1', textAlign: 'center', color: '#555', fontSize: 16, marginBottom: 16 }}>
+                These images are AI edited versions of photos from the main gallery using a text prompt 📝✨.
+              </div>
             {enhancedImageList.map((url, idx) => (
               <div className="gallery-item" key={idx}>
                 <img src={url} alt={`Enhanced ${idx + 1}`} style={{ cursor: 'pointer' }} onClick={() => setSelectedEnhancedImg(url)} />
@@ -161,7 +170,7 @@ const Gallery = () => {
                 disabled={isEnhancing}
                 onClick={() => handleEnhanceImage(selectedImg)}
               >
-                {isEnhancing ? '✨ Enhancing...' : '✨ AI Editor'}
+                {isEnhancing ? '✨ Editing...' : '✨ AI Editor'}
               </button>
               <button className="modal-close" onClick={() => setSelectedImg(null)}>&times;</button>
             </div>
