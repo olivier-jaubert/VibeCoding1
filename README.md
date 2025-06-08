@@ -8,13 +8,33 @@ _Biomedical Imaging Scientist 🧬 during the week, but artist 🎨 on Fridays_
 
 ---
 
-This project is a modern web gallery built with Vite + React. It is designed to display images from a local folder in a visually appealing, responsive format.
+# VibeCoding1 Art Gallery
+
+Live Gallery: [https://olivier-jaubert.github.io/VibeCoding1/](https://olivier-jaubert.github.io/VibeCoding1/)
 
 ## Features
-- Fast, modern React-based UI
-- Responsive gallery layout
-- Click any photo to view it larger in a modal
-- Easy to add or remove images from the `src/assets` folder
+
+- Modern web gallery displaying images from your collection
+- Profile section with artist bio and quote
+- Elegant, responsive layout with diagonal split background
+- Click any image to view a zoomed modal preview
+- Save the gallery as PDF or JPG with one click
+- AI-powered image enhancement (DeepAI SRGAN):
+  - Click an image, then click "Enhance Image" in the modal to upscale it
+  - Enhanced images are shown in a separate section
+  - Download enhanced images for permanent storage
+- Enhanced images in `src/assets/enhanced_images/` are auto-displayed on reload
+
+## How to Use
+
+1. **View the gallery:** [https://olivier-jaubert.github.io/VibeCoding1/](https://olivier-jaubert.github.io/VibeCoding1/)
+2. **Enhance images:** Click an image, then click "Enhance Image" in the modal
+3. **Save enhanced images:** Use the download button under each enhanced image, then move it to `src/assets/enhanced_images/` for persistence
+4. **Export gallery:** Use the top buttons to save the gallery as PDF or image
+
+---
+
+This project is a modern web gallery built with Vite + React. It is designed to display images from a local folder in a visually appealing, responsive format.
 
 ## Getting Started
 1. Install dependencies:
