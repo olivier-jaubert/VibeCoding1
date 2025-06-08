@@ -4,7 +4,7 @@
 
 _Biomedical Imaging Scientist 🧬 during the week, but artist 🎨 on Fridays_
 
-> Working 4 days a week opens up quite a bit of opportunities to explore new things 🌱. With no one around to sidetrack you, it gives you the free time you need—with no valid excuses to not try 🚀.
+*Working 4 days a week opens up quite a bit of opportunities to explore new things 🌱. With no one around to sidetrack you, it gives you the free time you need—with no valid excuses to not try 🚀. Science and Art are fun 😂 ❤️. *
 
 ---
 
