@@ -58,7 +58,7 @@ const Gallery = () => {
       const formData = new FormData();
       formData.append("image", blob, "image.jpg");
       formData.append("text", editPrompt);
-      const apiKey = "6c7fe6d1-9d25-4bf7-a1c0-d2e0eceede12";
+      const apiKey = import.meta.env.VITE_DEEPAI_API_KEY;
       const result = await axios.post(
         "https://api.deepai.org/api/image-editor",
         formData,
