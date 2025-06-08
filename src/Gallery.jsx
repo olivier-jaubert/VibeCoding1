@@ -43,7 +43,7 @@ const Gallery = () => {
     pdf.save("gallery.pdf");
   };
 
-  // Handler to enhance image using DeepAI Photo Editor API with text input
+  // Handler to edit image using DeepAI Photo Editor API with text input
   const handleEnhanceImage = async (src) => {
     if (!editPrompt.trim()) {
       setEnhanceError("Please enter a prompt for the enhancement.");
@@ -126,7 +126,7 @@ const Gallery = () => {
                   disabled={isEnhancing}
                   onClick={() => handleEnhanceImage(src)}
                 >
-                  {isEnhancing ? '✨ Enhancing...' : '✨ Enhance Image'}
+                  {isEnhancing ? '✨ Enhancing...' : '✨ AI Editor'}
                 </button>
               )}
             </div>
@@ -161,7 +161,7 @@ const Gallery = () => {
                 disabled={isEnhancing}
                 onClick={() => handleEnhanceImage(selectedImg)}
               >
-                {isEnhancing ? '✨ Enhancing...' : '✨ Enhance Image'}
+                {isEnhancing ? '✨ Enhancing...' : '✨ AI Editor'}
               </button>
               <button className="modal-close" onClick={() => setSelectedImg(null)}>&times;</button>
             </div>

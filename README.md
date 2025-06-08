@@ -19,8 +19,10 @@ Live Gallery: [https://olivier-jaubert.github.io/VibeCoding1/](https://olivier-j
 - Elegant, responsive layout with diagonal split background
 - Click any image to view a zoomed modal preview
 - Save the gallery as PDF or JPG with one click
-- AI-powered image enhancement (DeepAI SRGAN):
-  - Click an image, then click "Enhance Image" in the modal to upscale it
+
+- **AI-powered image editor**
+> ⚠️ **Warning:** Not working at the moment. Trying to call DeepAI API 
+  - Click an image, then click "AI Editor" and input text prompt 
   - Enhanced images are shown in a separate section
   - Download enhanced images for permanent storage
 - Enhanced images in `src/assets/enhanced_images/` are auto-displayed on reload
@@ -28,7 +30,7 @@ Live Gallery: [https://olivier-jaubert.github.io/VibeCoding1/](https://olivier-j
 ## How to Use
 
 1. **View the gallery:** [https://olivier-jaubert.github.io/VibeCoding1/](https://olivier-jaubert.github.io/VibeCoding1/)
-2. **Enhance images:** Click an image, then click "Enhance Image" in the modal
+2. **Edit images:** Click an image, then click "AI Editor" in the modal
 3. **Save enhanced images:** Use the download button under each enhanced image, then move it to `src/assets/enhanced_images/` for persistence
 4. **Export gallery:** Use the top buttons to save the gallery as PDF or image
 
