@@ -36,6 +36,29 @@ Live Gallery: [https://olivier-jaubert.github.io/VibeCoding1/](https://olivier-j
 
 ---
 
+## Setting up your DeepAI API Key
+
+This project uses the DeepAI Photo Editor API for image enhancement. To use this feature, you must provide your own DeepAI API key.
+
+### Steps:
+1. **Create a free DeepAI account:**
+   - Go to [DeepAI Sign Up](https://deepai.org/signup) and create an account.
+2. **Get your API key:**
+   - After logging in, visit your [API Keys page](https://deepai.org/dashboard/profile) to copy your key.
+3. **Add your API key to the project:**
+   - In the project root, create a file named `.env` (if it doesn't exist).
+   - Add the following line to `.env`:
+     
+     ```env
+     VITE_DEEPAI_API_KEY=your-api-key-here
+     ```
+   - Replace `your-api-key-here` with your actual DeepAI API key.
+4. **Restart the development server** if it's running, so the new environment variable is loaded.
+
+**Note:** The `.env` file is ignored by git and will not be committed to the repository.
+
+---
+
 This project is a modern web gallery built with Vite + React. It is designed to display images from a local folder in a visually appealing, responsive format.
 
 ## Getting Started
