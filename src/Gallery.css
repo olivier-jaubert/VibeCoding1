@@ -1,9 +1,23 @@
+/* Half-half white and dark blue background at 45 degrees */
+body {
+  min-height: 100vh;
+  background: linear-gradient(65deg, #f5f7fa 0%, #f5f7fa 50%, #0a2342 50%, #0a2342 100%);
+  /* Optional: add subtle paper texture overlay */
+  /* background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'), linear-gradient(45deg, #f5f7fa 0%, #f5f7fa 50%, #0a2342 50%, #0a2342 100%); */
+  /* background-repeat: repeat, no-repeat; */
+  /* background-size: auto, cover; */
+}
+
 .gallery-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
   padding: 2rem;
-  background: transparent;
+  background: rgba(31, 38, 135, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.85);
+  margin: 0 auto 40px auto;
+  max-width: 1100px;
 }
 
 .gallery-item {
@@ -115,6 +129,8 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  background: rgba(30, 34, 40, 0.75);
+  backdrop-filter: blur(2px);
 }
 
 .modal-content {
