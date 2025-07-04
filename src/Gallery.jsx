@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Gallery.css';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -27,6 +27,20 @@ const Gallery = () => {
   const [selectedEnhancedImg, setSelectedEnhancedImg] = useState(null);
   const [editPrompt, setEditPrompt] = useState('');
   const [dynamicEnhancedImages, setDynamicEnhancedImages] = useState([]);
+  // Favorites state and persistence
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const stored = localStorage.getItem('gallery-favorites');
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [showFavorites, setShowFavorites] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('gallery-favorites', JSON.stringify(favorites));
+  }, [favorites]);
 
   // Handler to save as image
   const handleSaveAsImage = async () => {
@@ -92,6 +106,18 @@ const Gallery = () => {
     setIsEnhancing(false);
   };
 
+  const toggleFavorite = (url) => {
+    setFavorites((prev) =>
+      prev.includes(url) ? prev.filter((f) => f !== url) : [...prev, url]
+    );
+  };
+
+  // For main and enhanced images
+  const allImages = imageList.concat(enhancedImageList, dynamicEnhancedImages);
+  const displayedImages = showFavorites
+    ? allImages.filter((url) => favorites.includes(url))
+    : imageList;
+
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'center', gap: 16, margin: '24px 0 0 0' }}>
@@ -122,6 +148,20 @@ const Gallery = () => {
           }}
         >
           📄 Save as PDF
+        </button>
+        <button
+          onClick={() => setShowFavorites((v) => !v)}
+          style={{
+            padding: '8px 18px',
+            borderRadius: 8,
+            border: 'none',
+            background: showFavorites ? '#f39c12' : '#0a2342',
+            color: '#fff',
+            fontWeight: 600,
+            cursor: 'pointer',
+          }}
+        >
+          {showFavorites ? 'Show All' : 'Show Favorites'}
         </button>
       </div>
       <div id="gallery-root">
@@ -162,16 +202,42 @@ const Gallery = () => {
         </div>
 
         <div className="gallery-container">
-          {imageList.map((src, idx) => (
+          {displayedImages.map((src, idx) => (
             <div className="gallery-item" key={idx}>
-              <img
-                src={src}
-                alt={`Gallery ${idx + 1}`}
-                onClick={() => setSelectedImg(src)}
-                style={{ cursor: 'pointer' }}
-              />
-              {/* Only show Enhance button if this image is selected */}
-              {selectedImg === src && (
+              <div style={{ position: 'relative' }}>
+                <img
+                  src={src}
+                  alt={`Gallery ${idx + 1}`}
+                  onClick={() => setSelectedImg(src)}
+                  style={{ cursor: 'pointer', opacity: favorites.includes(src) ? 0.85 : 1, border: favorites.includes(src) ? '2px solid #f39c12' : undefined }}
+                />
+                <button
+                  aria-label={favorites.includes(src) ? 'Remove from favorites' : 'Add to favorites'}
+                  onClick={(e) => { e.stopPropagation(); toggleFavorite(src); }}
+                  style={{
+                    position: 'absolute',
+                    top: 8,
+                    right: 8,
+                    background: 'rgba(255,255,255,0.8)',
+                    border: 'none',
+                    borderRadius: '50%',
+                    width: 32,
+                    height: 32,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: 20,
+                    color: favorites.includes(src) ? '#f39c12' : '#aaa',
+                    cursor: 'pointer',
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.12)'
+                  }}
+                  tabIndex={0}
+                >
+                  {favorites.includes(src) ? '★' : '☆'}
+                </button>
+              </div>
+              {/* Only show Enhance button if this image is selected and not in favorites mode */}
+              {!showFavorites && selectedImg === src && (
                 <button
                   style={{
                     marginTop: 8,
