@@ -1,0 +1,11 @@
+:root {
+  --color-primary: #fff;
+  --color-secondary: #eee;
+  --color-dark: #242424;
+  --color-light: #f9f9f9;
+  --font-main: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-18: 18px;
+  --radius-50: 50%;
+}

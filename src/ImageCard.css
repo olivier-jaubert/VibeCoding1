@@ -1,8 +1,8 @@
 .image-card {
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  border-radius: 8px;
+  border-radius: var(--radius-8);
   overflow: hidden;
-  background: #fff;
+  background: var(--color-primary);
   transition: transform 0.15s, box-shadow 0.15s;
   cursor: pointer;
   display: flex;
