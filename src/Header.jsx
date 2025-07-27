@@ -1,3 +1,11 @@
+/**
+ * Header - Site branding and navigation bar.
+ *
+ * Usage:
+ *   <Header />
+ *
+ * Extend with navigation links as needed.
+ */
 import React from "react";
 import "./Header.css";
 

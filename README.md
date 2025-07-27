@@ -75,5 +75,68 @@ This project is a modern web gallery built with Vite + React. It is designed to 
 - Place your `.jpg` images in the `src/assets` folder (subfolders are supported, but `annex` is reserved for artist info).
 - The gallery will automatically display all images in this folder.
 
-## License
-MIT
+
+---
+
+## Components & Usage
+
+### ImageCard
+Reusable card for displaying gallery images.
+
+**Props:**
+- `src` (string, required): Image source URL
+- `alt` (string, required): Alt text
+- `onClick` (function, optional): Click handler
+- `className` (string, optional): Additional class names
+
+**Usage:**
+```jsx
+<ImageCard src="img.jpg" alt="Artwork" onClick={() => openModal("img.jpg")} />
+```
+
+### Modal
+Reusable modal/lightbox overlay for displaying content.
+
+**Props:**
+- `isOpen` (bool): Whether the modal is open
+- `onClose` (function): Close handler
+- `children` (node): Content to display
+- `onPrev`/`onNext` (function, optional): Navigation handlers
+- `showNav` (bool, optional): Show navigation arrows
+
+**Usage:**
+```jsx
+<Modal isOpen={modalOpen} onClose={closeModal} showNav onPrev={prevImg} onNext={nextImg}>
+  <img src={selectedImg} alt="" />
+</Modal>
+```
+
+### Header
+Site branding and navigation bar.
+
+**Usage:**
+```jsx
+<Header />
+```
+
+### GalleryGrid
+Displays a grid of images with optional favorite and enhance actions.
+
+**Props:**
+- `images` (array): List of image URLs
+- `favorites` (array): List of favorite image URLs
+- `onImageClick` (function): Handler for image click
+- `onToggleFavorite` (function): Handler to toggle favorite status
+- `showFavorites` (bool): Show only favorites
+- `selectedImg` (string): Currently selected image
+- `isEnhancing` (bool): Whether an image is being enhanced
+- `handleEnhanceImage` (function): Handler to enhance image
+
+**Usage:**
+```jsx
+<GalleryGrid images={images} onImageClick={setSelectedImg} favorites={favorites} onToggleFavorite={toggleFavorite} />
+```
+
+---
+
+Each component is documented with JSDoc comments in its source file for further details.

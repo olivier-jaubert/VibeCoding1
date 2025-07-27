@@ -1,3 +1,19 @@
+/**
+ * Modal - A reusable modal/lightbox component for displaying content in an overlay.
+ *
+ * Props:
+ *   isOpen (bool): Whether the modal is open
+ *   onClose (function): Handler to close the modal
+ *   children (node): Content to display inside the modal
+ *   onPrev (function): Optional handler for previous navigation (for image galleries)
+ *   onNext (function): Optional handler for next navigation
+ *   showNav (bool): Show navigation arrows (default: false)
+ *
+ * Usage:
+ *   <Modal isOpen={modalOpen} onClose={closeModal} showNav onPrev={prevImg} onNext={nextImg}>
+ *     <img src={selectedImg} alt="" />
+ *   </Modal>
+ */
 import React, { useEffect } from 'react';
 import './Modal.css';
 

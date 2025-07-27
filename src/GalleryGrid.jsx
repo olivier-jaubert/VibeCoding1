@@ -1,3 +1,19 @@
+/**
+ * GalleryGrid - Displays a grid of images with optional favorite and enhance actions.
+ *
+ * Props:
+ *   images (array): List of image URLs
+ *   favorites (array): List of favorite image URLs
+ *   onImageClick (function): Handler for image click
+ *   onToggleFavorite (function): Handler to toggle favorite status
+ *   showFavorites (bool): Show only favorites (default: false)
+ *   selectedImg (string): Currently selected image
+ *   isEnhancing (bool): Whether an image is being enhanced
+ *   handleEnhanceImage (function): Handler to enhance image
+ *
+ * Usage:
+ *   <GalleryGrid images={images} onImageClick={setSelectedImg} favorites={favorites} onToggleFavorite={toggleFavorite} />
+ */
 import React from 'react';
 import ImageCard from './ImageCard';
 import './Gallery.css';
