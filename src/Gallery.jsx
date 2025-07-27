@@ -184,7 +184,7 @@ const Gallery = () => {
         )}
         {/* Enhanced Images Section (persistent) */}
         {enhancedImageList.concat(dynamicEnhancedImages).length > 0 && (
-          <div style={{ marginTop: 32 }}>
+          <div id="enhanced-images" style={{ marginTop: 32 }}>
             <h2 style={{ gridColumn: '1/-1', textAlign: 'center', color: '#0a2342' }}>
               🪄 Edited Images
             </h2>

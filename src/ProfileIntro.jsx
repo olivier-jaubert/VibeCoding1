@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProfileIntro = () => (
-  <section className="profile-section" style={{
+  <section id="profile-intro" className="profile-section" style={{
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
