@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from './Modal';
 import './Gallery.css';
-import ImageCard from './ImageCard';
+import GalleryGrid from './GalleryGrid';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import axios from 'axios';
@@ -169,68 +169,22 @@ const Gallery = () => {
       <div id="gallery-root">
         {/* Header and profile intro moved to Header and ProfileIntro components */}
 
-        <div className="gallery-container">
-          {displayedImages.map((src, idx) => (
-            <div className="gallery-item" key={idx} style={{ position: 'relative' }}>
-              <ImageCard
-                src={src}
-                alt={`Gallery ${idx + 1}`}
-                onClick={() => setSelectedImg(src)}
-                className={favorites.includes(src) ? 'favorite' : ''}
-              />
-              <button
-                aria-label={favorites.includes(src) ? 'Remove from favorites' : 'Add to favorites'}
-                onClick={(e) => { e.stopPropagation(); toggleFavorite(src); }}
-                style={{
-                  position: 'absolute',
-                  top: 8,
-                  right: 8,
-                  background: 'rgba(255,255,255,0.8)',
-                  border: 'none',
-                  borderRadius: '50%',
-                  width: 32,
-                  height: 32,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: 20,
-                  color: favorites.includes(src) ? '#f39c12' : '#aaa',
-                  cursor: 'pointer',
-                  boxShadow: '0 1px 4px rgba(0,0,0,0.12)'
-                }}
-                tabIndex={0}
-              >
-                {favorites.includes(src) ? '★' : '☆'}
-              </button>
-              {/* Only show Enhance button if this image is selected and not in favorites mode */}
-              {!showFavorites && selectedImg === src && (
-                <button
-                  style={{
-                    marginTop: 8,
-                    width: '100%',
-                    background: '#0a2342',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: 6,
-                    padding: '6px 0',
-                    cursor: 'pointer',
-                    fontWeight: 500,
-                  }}
-                  disabled={isEnhancing}
-                  onClick={() => handleEnhanceImage(src)}
-                >
-                  {isEnhancing ? '✨ Enhancing...' : '✨ AI Editor'}
-                </button>
-              )}
-            </div>
-          ))}
-        </div>
+        <GalleryGrid
+          images={displayedImages}
+          favorites={favorites}
+          onImageClick={setSelectedImg}
+          onToggleFavorite={toggleFavorite}
+          showFavorites={showFavorites}
+          selectedImg={selectedImg}
+          isEnhancing={isEnhancing}
+          handleEnhanceImage={handleEnhanceImage}
+        />
         {enhanceError && (
           <div style={{ color: 'red', textAlign: 'center', margin: 12 }}>⚠️ {enhanceError}</div>
         )}
         {/* Enhanced Images Section (persistent) */}
         {enhancedImageList.concat(dynamicEnhancedImages).length > 0 && (
-          <div className="gallery-container" style={{ marginTop: 32 }}>
+          <div style={{ marginTop: 32 }}>
             <h2 style={{ gridColumn: '1/-1', textAlign: 'center', color: '#0a2342' }}>
               🪄 Edited Images
             </h2>
@@ -246,15 +200,10 @@ const Gallery = () => {
               These images are AI edited versions of photos from the main gallery using a text
               prompt 📝✨.
             </div>
-            {enhancedImageList.concat(dynamicEnhancedImages).map((url, idx) => (
-              <div className="gallery-item" key={idx}>
-                <ImageCard
-                  src={url}
-                  alt={`Enhanced ${idx + 1}`}
-                  onClick={() => setSelectedEnhancedImg(url)}
-                />
-              </div>
-            ))}
+            <GalleryGrid
+              images={enhancedImageList.concat(dynamicEnhancedImages)}
+              onImageClick={setSelectedEnhancedImg}
+            />
           </div>
         )}
         {selectedImg && (

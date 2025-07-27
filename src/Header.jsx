@@ -5,8 +5,8 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header__branding">
-        <img src="/vite.svg" alt="My Gallery Logo" className="header__logo" />
-        <span className="header__title">My Gallery</span>
+        <img src="/palette-emoji.svg" alt="🎨" className="header__logo" />
+        <span className="header__title">🖼️ Personal Gallery - Olivier's Friday Art Journey 🎨</span>
       </div>
       <nav className="header__nav">
         {/* Add navigation links here if needed */}
