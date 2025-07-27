@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Modal from './Modal';
 import './Gallery.css';
 import ImageCard from './ImageCard';
 import html2canvas from 'html2canvas';
@@ -291,58 +292,74 @@ const Gallery = () => {
           </div>
         )}
         {selectedImg && (
-          <div className="modal-overlay" onClick={() => setSelectedImg(null)}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <img src={selectedImg} alt="Large preview" />
-              <input
-                type="text"
-                placeholder="📝 Describe your enhancement (e.g. 'make it look like a painting')"
-                value={editPrompt}
-                onChange={(e) => setEditPrompt(e.target.value)}
-                style={{
-                  width: '100%',
-                  margin: '16px 0 8px 0',
-                  padding: 8,
-                  borderRadius: 6,
-                  border: '1px solid #ccc',
-                  fontSize: 16,
-                }}
-                disabled={isEnhancing}
-              />
-              <button
-                style={{
-                  marginTop: 8,
-                  width: '100%',
-                  background: '#0a2342',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: 6,
-                  padding: '10px 0',
-                  cursor: isEnhancing ? 'not-allowed' : 'pointer',
-                  fontWeight: 500,
-                  fontSize: 18,
-                }}
-                disabled={isEnhancing}
-                onClick={() => handleEnhanceImage(selectedImg)}
-              >
-                {isEnhancing ? '✨ Editing...' : '✨ AI Editor'}
-              </button>
-              <button className="modal-close" onClick={() => setSelectedImg(null)}>
-                &times;
-              </button>
-            </div>
-          </div>
+          <Modal
+            isOpen={!!selectedImg}
+            onClose={() => setSelectedImg(null)}
+            onPrev={() => {
+              const idx = displayedImages.indexOf(selectedImg);
+              if (idx > 0) setSelectedImg(displayedImages[idx - 1]);
+            }}
+            onNext={() => {
+              const idx = displayedImages.indexOf(selectedImg);
+              if (idx < displayedImages.length - 1) setSelectedImg(displayedImages[idx + 1]);
+            }}
+            showNav={displayedImages.length > 1}
+          >
+            <img src={selectedImg} alt="Large preview" style={{ maxHeight: '60vh', maxWidth: '80vw' }} />
+            <input
+              type="text"
+              placeholder="📝 Describe your enhancement (e.g. 'make it look like a painting')"
+              value={editPrompt}
+              onChange={(e) => setEditPrompt(e.target.value)}
+              style={{
+                width: '100%',
+                margin: '16px 0 8px 0',
+                padding: 8,
+                borderRadius: 6,
+                border: '1px solid #ccc',
+                fontSize: 16,
+              }}
+              disabled={isEnhancing}
+            />
+            <button
+              style={{
+                marginTop: 8,
+                width: '100%',
+                background: '#0a2342',
+                color: '#fff',
+                border: 'none',
+                borderRadius: 6,
+                padding: '10px 0',
+                cursor: isEnhancing ? 'not-allowed' : 'pointer',
+                fontWeight: 500,
+                fontSize: 18,
+              }}
+              disabled={isEnhancing}
+              onClick={() => handleEnhanceImage(selectedImg)}
+            >
+              {isEnhancing ? '✨ Editing...' : '✨ AI Editor'}
+            </button>
+          </Modal>
         )}
         {/* Modal for zoomed enhanced image */}
         {selectedEnhancedImg && (
-          <div className="modal-overlay" onClick={() => setSelectedEnhancedImg(null)}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <img src={selectedEnhancedImg} alt="Enhanced Large preview" />
-              <button className="modal-close" onClick={() => setSelectedEnhancedImg(null)}>
-                &times;
-              </button>
-            </div>
-          </div>
+          <Modal
+            isOpen={!!selectedEnhancedImg}
+            onClose={() => setSelectedEnhancedImg(null)}
+            onPrev={() => {
+              const allEnhanced = enhancedImageList.concat(dynamicEnhancedImages);
+              const idx = allEnhanced.indexOf(selectedEnhancedImg);
+              if (idx > 0) setSelectedEnhancedImg(allEnhanced[idx - 1]);
+            }}
+            onNext={() => {
+              const allEnhanced = enhancedImageList.concat(dynamicEnhancedImages);
+              const idx = allEnhanced.indexOf(selectedEnhancedImg);
+              if (idx < allEnhanced.length - 1) setSelectedEnhancedImg(allEnhanced[idx + 1]);
+            }}
+            showNav={enhancedImageList.concat(dynamicEnhancedImages).length > 1}
+          >
+            <img src={selectedEnhancedImg} alt="Enhanced Large preview" style={{ maxHeight: '70vh', maxWidth: '90vw' }} />
+          </Modal>
         )}
       </div>
     </>
